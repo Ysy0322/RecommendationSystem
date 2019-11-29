@@ -95,7 +95,7 @@ class userBasedRecommSys:
                 else:
                     user_similarity_matrix[u][v] = 1.0
 
-        return user_similarity_matrix
+        return numpy.array(user_similarity_matrix)
 
     '''
     k_nearest_neighbors[u][k]
@@ -134,6 +134,6 @@ class userBasedRecommSys:
                         k += 1
                     if ab_sim_u_v != 0.0:
                         self.preference_matrix[u][i] = self.average_rate_array[u] + sim_u_v_diff / ab_sim_u_v
-                    else:
-                        print("ab_sim_u_v is 0")
+                    # else:
+                        # print("ab_sim_u_v is 0")
         return self.preference_matrix
