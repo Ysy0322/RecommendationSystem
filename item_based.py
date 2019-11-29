@@ -80,3 +80,11 @@ class itemBasedRecommSys:
             # else:
             #     print("ab_sim_mm' is 0")
         return self.preference_matrix
+
+    # '''
+    # Calculate RMSE
+    # '''
+    #
+    # def calculate_rmse(self, path):
+    #     target_matrix = util.read_file(path)
+    #     return util.RMSE(numpy.array(self.preference_matrix), numpy.array(target_matrix))

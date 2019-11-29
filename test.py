@@ -1,6 +1,9 @@
 import user_based as ub
 import item_based as ib
+import util
+import numpy
 
+target_matrix = util.read_file("test.csv")
 print('\n', "Test User Based Recommendation System", '\n')
 UB = ub.userBasedRecommSys()
 # UB.setup("train_mini_test.csv", 3)
@@ -16,6 +19,9 @@ print(UB.k_nearest_neighbor, '\n')
 UB.predicate_rating()
 print("predicate rating based on user")
 print(UB.preference_matrix, '\n')
+print("RMSE:")
+print(util.RMSE(numpy.array(UB.preference_matrix), numpy.array(target_matrix)))
+
 
 print('\n', "Test Item Based Recommendation System", '\n')
 IB = ib.itemBasedRecommSys()
@@ -25,3 +31,5 @@ print(IB.item_similarity_matrix, '\n')
 IB.predicate_rating()
 print("predicate rating based on item")
 print(IB.preference_matrix)
+print("RMSE:")
+print(util.RMSE(numpy.array(IB.preference_matrix), numpy.array(target_matrix)))

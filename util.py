@@ -28,3 +28,12 @@ rmse(numpy.array(),numpy.array())
 
 def RMSE(predictions, targets):
     return numpy.sqrt(((predictions - targets) ** 2).mean())
+
+
+'''
+方法一：写入csv文件，比较文件
+问题：写入之后还是要读出来？所以写入就没有必要了
+方法二：读取实际评分的csv文件，获取preference matrix
+               与预测的csv文件比较
+方法二比较可取 √
+'''
