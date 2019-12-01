@@ -56,6 +56,8 @@ class userBasedRecommSys:
         average_rate_array = self.user_n * [0.0]
         for u in range(self.user_n):
             average_rate_array[u] = self.calculate_average_rate(u)
+        print(numpy.array(average_rate_array))
+        print(len(average_rate_array))
         return average_rate_array
 
     '''
@@ -77,6 +79,7 @@ class userBasedRecommSys:
         if numpy.sqrt(sqrt_sum_u) == 0 or numpy.sqrt(sqrt_sum_v) == 0:
             return 0.0
         similarity = diff_sum_u_v / (numpy.sqrt(sqrt_sum_u) * numpy.sqrt(sqrt_sum_v))
+        print(similarity)
         return similarity
 
     '''
@@ -94,7 +97,7 @@ class userBasedRecommSys:
                     user_similarity_matrix[u][v] = self.calculate_user_similarity(u, v)
                 else:
                     user_similarity_matrix[u][v] = 1.0
-
+        print(numpy.array(user_similarity_matrix))
         return numpy.array(user_similarity_matrix)
 
     '''
@@ -112,7 +115,8 @@ class userBasedRecommSys:
             k_nearest_neighbor[u] = k * [0.0]
             array_u = numpy.array(self.user_similarity_matrix[u])
             k_nearest_neighbor[u] = heapq.nlargest(k, range(len(array_u)), array_u.take)
-        return k_nearest_neighbor
+        print(numpy.array(k_nearest_neighbor))
+        return numpy.array(k_nearest_neighbor)
 
     '''
     预测用户的评分
@@ -135,5 +139,5 @@ class userBasedRecommSys:
                     if ab_sim_u_v != 0.0:
                         self.preference_matrix[u][i] = self.average_rate_array[u] + sim_u_v_diff / ab_sim_u_v
                     # else:
-                        # print("ab_sim_u_v is 0")
+                    # print("ab_sim_u_v is 0")
         return self.preference_matrix

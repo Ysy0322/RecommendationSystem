@@ -1,6 +1,7 @@
 import pandas
 import pandas as pd
 import numpy
+import user_based
 
 '''
 读取csv文件
@@ -13,6 +14,7 @@ def read_file(path):
     # 构建 Preference Matrix
     preference_matrix = pd.pivot_table(train_data, index='userID', columns='itemID', values=['rating'], fill_value=0.0)
     preference_matrix = preference_matrix.values
+    print(preference_matrix)
     # result : [2967 rows x 3814 columns]
     return preference_matrix
 
@@ -29,7 +31,8 @@ def save_csv(matrix, path):
     data.index = data.index.rename('itemID', level=1)
     data.name = 'rating'
     data = data.reset_index()
-    numpy.savetxt(path, data, delimiter=',', header='userID,itemID,rating', comments='', newline='\n',fmt='%0i,%0i,%10.7f')
+    numpy.savetxt(path, data, delimiter=',', header='userID,itemID,rating', comments='', newline='\n',
+                  fmt='%0i,%0i,%10.7f')
 
 
 '''
@@ -49,11 +52,14 @@ def RMSE(predictions, targets):
                与预测的csv文件比较
 方法二比较可取 √
 '''
-import pandas as pd
 
-a = ['one', 'two', 'three']
-b = [1, 2, 3]
-english_column = pd.Series(a, name='english')
-number_column = pd.Series(b, name='number')
-predictions = pd.concat([english_column, number_column], axis=1)
-print(predictions)
+
+def test_RMSE():
+    UB = user_based.userBasedRecommSys()
+    UB.setup("train_mini.csv", 3)
+    UB.predicate_rating()
+    print(RMSE(UB.preference_matrix, read_file("test_mini.csv")))
+
+
+if __name__ == '__main__':
+    test_RMSE()
