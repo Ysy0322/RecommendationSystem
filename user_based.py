@@ -68,14 +68,16 @@ class userBasedRecommSys:
         diff_sum_u_v = 0.0
         sqrt_sum_u = 0.0
         sqrt_sum_v = 0.0
+        if numpy.sum(self.preference_matrix[u] * self.preference_matrix[v]) == 0.0:
+            return 0.0
         average_rate_u = self.calculate_average_rate(u)
         average_rate_v = self.calculate_average_rate(v)
         for i in range(self.item_m):
-            if self.preference_matrix[u][i] != 0 and self.preference_matrix[v][i] != 0:
-                diff_sum_u_v += (self.preference_matrix[u][i] - average_rate_u) * (
-                        self.preference_matrix[v][i] - average_rate_v)
-                sqrt_sum_u += (self.preference_matrix[u][i] - average_rate_u) ** 2
-                sqrt_sum_v += (self.preference_matrix[v][i] - average_rate_v) ** 2
+            # if self.preference_matrix[u][i] != 0 and self.preference_matrix[v][i] != 0:
+            diff_sum_u_v += (self.preference_matrix[u][i] - average_rate_u) * (
+                    self.preference_matrix[v][i] - average_rate_v)
+            sqrt_sum_u += (self.preference_matrix[u][i] - average_rate_u) ** 2
+            sqrt_sum_v += (self.preference_matrix[v][i] - average_rate_v) ** 2
         if numpy.sqrt(sqrt_sum_u) == 0 or numpy.sqrt(sqrt_sum_v) == 0:
             return 0.0
         similarity = diff_sum_u_v / (numpy.sqrt(sqrt_sum_u) * numpy.sqrt(sqrt_sum_v))
