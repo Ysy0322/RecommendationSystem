@@ -50,15 +50,14 @@ class itemBasedRecommSys:
     '''
 
     def get_similarity_matrix(self):
-        item_similarity_matrix = self.item_m * [0.0]
+        item_similarity_matrix = numpy.zeros((self.item_m, self.item_m))
         for m1 in range(self.item_m):
-            item_similarity_matrix[m1] = self.item_m * [0.0]
-            for m2 in range(self.item_m):
-                if m1 != m2:
-                    item_similarity_matrix[m1][m2] = self.calculate_item_similarity(m1, m2)
-                else:
-                    item_similarity_matrix[m1][m2] = 1.0
-
+            item_similarity_matrix[m1][m1] = 1.0
+            m2 = m1 + 1
+            while m1 < m2 < self.item_m:
+                similarity = self.calculate_item_similarity(m1, m2)
+                item_similarity_matrix[m1][m2] = similarity
+                item_similarity_matrix[m2][m1] = similarity
         return numpy.array(item_similarity_matrix)
 
     '''

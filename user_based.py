@@ -89,14 +89,15 @@ class userBasedRecommSys:
     '''
 
     def get_similarity_matrix(self):
-        user_similarity_matrix = self.user_n * [0.0]
+        user_similarity_matrix = numpy.zeros((self.user_n, self.user_n))
         for u in range(self.user_n):
-            user_similarity_matrix[u] = self.user_n * [0.0]
-            for v in range(self.user_n):
-                if u != v:
-                    user_similarity_matrix[u][v] = self.calculate_user_similarity(u, v)
-                else:
-                    user_similarity_matrix[u][v] = 1.0
+            user_similarity_matrix[u][u] = 1.0
+            v = u + 1
+            while u < v < self.user_n:
+                similarity = self.calculate_user_similarity(u, v)
+                user_similarity_matrix[u][v] = similarity
+                user_similarity_matrix[v][u] = similarity
+                v += 1
         print(numpy.array(user_similarity_matrix))
         return numpy.array(user_similarity_matrix)
 
