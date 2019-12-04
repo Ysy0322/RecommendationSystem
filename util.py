@@ -1,5 +1,7 @@
 import pandas
 import pandas as pd
+from sklearn.metrics.pairwise import pairwise_distances
+
 import numpy
 import user_based
 
@@ -62,4 +64,7 @@ def test_RMSE():
 
 
 if __name__ == '__main__':
-    test_RMSE()
+    # test_RMSE()
+    PM = [[3, 4, 2], [3, 4, 5], [4, 3, 4], [5, 4, 3]]
+    user_similarity = pairwise_distances(PM, metric='cosine')
+    print(user_similarity)

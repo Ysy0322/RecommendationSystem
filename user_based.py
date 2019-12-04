@@ -1,4 +1,6 @@
 import heapq
+from sklearn.metrics.pairwise import pairwise_distances
+from sklearn.neighbors import NearestNeighbors
 
 import util
 import numpy
@@ -56,13 +58,18 @@ class userBasedRecommSys:
         average_rate_array = self.user_n * [0.0]
         for u in range(self.user_n):
             average_rate_array[u] = self.calculate_average_rate(u)
-        print(numpy.array(average_rate_array))
-        print(len(average_rate_array))
+        # print(numpy.array(average_rate_array))
+        # print(len(average_rate_array))
         return average_rate_array
 
     '''
     计算用户u，v的相似度
+    皮尔森（Pearson）
     '''
+
+    def cos_similarity(self):
+        user_similarity = pairwise_distances(self.preference_matrix, metric='cosine')
+        return user_similarity
 
     def calculate_user_similarity(self, u, v):
         diff_sum_u_v = 0.0
@@ -81,7 +88,7 @@ class userBasedRecommSys:
         if numpy.sqrt(sqrt_sum_u) == 0 or numpy.sqrt(sqrt_sum_v) == 0:
             return 0.0
         similarity = diff_sum_u_v / (numpy.sqrt(sqrt_sum_u) * numpy.sqrt(sqrt_sum_v))
-        print(similarity)
+        # print(similarity)
         return similarity
 
     '''
@@ -100,7 +107,7 @@ class userBasedRecommSys:
                 user_similarity_matrix[u][v] = similarity
                 user_similarity_matrix[v][u] = similarity
                 v += 1
-        print(numpy.array(user_similarity_matrix))
+        # print(numpy.array(user_similarity_matrix))
         return numpy.array(user_similarity_matrix)
 
     '''
@@ -118,7 +125,7 @@ class userBasedRecommSys:
             k_nearest_neighbor[u] = k * [0.0]
             array_u = numpy.array(self.user_similarity_matrix[u])
             k_nearest_neighbor[u] = heapq.nlargest(k, range(len(array_u)), array_u.take)
-        print(numpy.array(k_nearest_neighbor))
+        # print(numpy.array(k_nearest_neighbor))
         return numpy.array(k_nearest_neighbor)
 
     '''
