@@ -86,23 +86,3 @@ def RMSE(predictions, targets):
     return numpy.sqrt(((predictions - targets) ** 2).mean())
 
 
-
-# if __name__ == '__main__':
-    '''
-    Tensorflow test
-    R = numpy.zeros((3, 2, 5))
-    for i in range(3):
-        for j in range(2):
-            for k in range(5):
-                R[i][j][k] = i + j + k
-
-    # n * k * m
-    R.reshape(3, 2 * 5)
-    sim = numpy.array([[2, 2],
-                       [1, 1],
-                       [3, 3]])
-    reshape_R = tensorflow.reshape(R, [3, 2 * 5])
-
-    print(R)
-    print(reshape_R.dot(sim))    
-    '''
