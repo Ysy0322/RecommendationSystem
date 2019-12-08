@@ -20,8 +20,9 @@ class itemBasedRecommSys:
         self.item = []
         self.user_n = 0
         self.item_m = 0
-        self.item_similarity_matrix = []
         self.k_nearest = 0
+        self.item_similarity_matrix = []
+        self.average_rate_array = []
         self.similarity_m12_k = []
         self.similarity_index_k = []
 
@@ -31,11 +32,21 @@ class itemBasedRecommSys:
         self.item_m = len(self.preference_matrix_T)
         self.user_n = len(self.preference_matrix_T[0])
         self.k_nearest = k
+        self.average_rate_array = self.get_average_rating()
         self.item_similarity_matrix = self.get_item_similarity_matrix()
         self.similarity_m12_k, self.similarity_index_k = self.get_k_neighbors_matrix()
 
     '''
+    计算用户的平均评分矩阵
+    [用户u的平均评分, , ,]
+    '''
+
+    def get_average_rating(self):
+        return self.preference_matrix_T.sum(0) / (self.preference_matrix_T != 0).sum(0)
+
+    '''
     计算商品的相似度矩阵
+    item_m * item_m
     '''
 
     def get_item_similarity_matrix(self):
@@ -44,10 +55,10 @@ class itemBasedRecommSys:
         return item_similarity_matrix
 
     '''
-        计算用户u的前k相似商品
-        返回list[商品的评分], List[商品的index]
-        similarity_index_k 放的是商品的index，不是item_id
-        '''
+    计算用户u的前k相似商品
+    返回list[商品的评分], List[商品的index]
+    similarity_index_k 放的是商品的index，不是item_id
+    '''
 
     def k_neighbors(self, m):
 
@@ -81,39 +92,9 @@ class itemBasedRecommSys:
         print("计算前k相似的商品 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return similarity_m12_k, similarity_index_k
 
-    '''
-    不考虑k最大相似度的商品预测用户的评分
-    '''
-
-    def predict_without_k(self, path):
-        print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-        # for m in range(self.item_m):
-        # similarity_m12 = self.item_similarity_matrix[m]
-        # if
-        prediction = numpy.where(numpy.array(self.preference_matrix_T) > 0,
-                                 numpy.array(self.preference_matrix_T).T.dot(self.item_similarity_matrix) / numpy.array(
-                                     [numpy.abs(self.item_similarity_matrix).sum(axis=1)]),
-                                 )
-        # prediction = self.item_similarity_matrix.dot(self.preference_matrix_T) / numpy.array(
-        #     numpy.abs(self.item_similarity_matrix).sum())
-        # print(len(prediction))
-        # print(prediction)
-        test_index = util.read_file(path, False)
-        predict = []
-        for i in range(len(test_index)):
-            to_list = []
-            to_list.extend(test_index[i])
-            u = test_index[i][0]
-            m = test_index[i][1]
-            # to_list.append(prediction[self.item.index(m)][u])
-            to_list.append(prediction[u][self.item.index(m)])
-            predict.append(to_list)
-        print("预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-        return predict
-
     # 带有k的用户对商品的评分预测
 
-    def predict_with_k(self, path):
+    def predict(self, path, k=True):
         print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
@@ -122,28 +103,38 @@ class itemBasedRecommSys:
             to_list.extend(test_index[i])
             u = test_index[i][0]
             m = test_index[i][1]
-            to_list.append(self.predicate_u_m(u, m))
+            if k:
+                to_list.append(self.predicate_u_m(u, m, True))
+            else:
+                to_list.append(self.predicate_u_m(u, m, False))
             predict.append(to_list)
         print("预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-        print(predict)
         return predict
 
     # 预测用户u，对商品m的评分
 
-    def predicate_u_m(self, u, m):
+    def predicate_u_m(self, u, m, k=True):
         global ab_sim_m12, sim_multi_m12
         pre = 0.0
         sim_multi_m12 = 0.0
         ab_sim_m12 = 0.0
         m = self.item.index(m)
-        similarity_m = self.similarity_index_k[m]
-        for m1 in range(self.k_nearest):
-            m1 = similarity_m[m1]
+        if k:
+            similarity_m = self.similarity_index_k[m]
+            k_n = self.k_nearest
+        else:
+            similarity_m = self.item_similarity_matrix[m]
+            k_n = self.item_m
+        for m1 in range(k_n):
+            if k:
+                m1 = similarity_m[m1]
             if self.preference_matrix_T[m1][u] != 0.0:
                 sim_multi_m12 += self.item_similarity_matrix[m][m1] * self.preference_matrix_T[m1][u]
                 ab_sim_m12 += numpy.abs(self.item_similarity_matrix[m][m1])
         if ab_sim_m12 != 0.0:
             pre = sim_multi_m12 / ab_sim_m12
+        if pre <= 0.0:
+            pre = self.average_rate_array[u]
         return pre
 
     # 将预测结果写入csv文件
@@ -151,13 +142,13 @@ class itemBasedRecommSys:
     def predict_to_csv(self, test_path, k=True):
         if k:
             save_path = "data\\item_based\\item_based_predict_k_" + str(self.k_nearest) + ".csv"
-            util.save_csv_from_rating(self.predict_with_k(test_path), save_path)
+            util.save_csv_from_rating(self.predict(test_path, True), save_path)
         else:
             save_path = "data\\item_based\\item_based_predict_without_k.csv"
-            util.save_csv_from_rating(self.predict_without_k(test_path), save_path)
+            util.save_csv_from_rating(self.predict(test_path, False), save_path)
 
 
 IB = itemBasedRecommSys()
 print("Test Item Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-IB.setup("data\\train.csv", 50)
-IB.predict_to_csv("data\\test_index.csv")
+IB.setup("data\\train.csv", 1)
+IB.predict_to_csv("data\\test_index.csv", False)

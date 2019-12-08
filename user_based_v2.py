@@ -170,9 +170,10 @@ class userBasedRecommSys:
             save_path = "data\\user_based\\user_based_predict_without_k.csv"
             util.save_csv_from_rating(self.predict_without_k(test_path), save_path)
 
+    # 考虑k值的基于用户的预测
+
 
 UB = userBasedRecommSys()
-print("Test User Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-UB.setup("data\\train.csv", 1)
-UB.predict_to_csv("data\\test_index.csv", False)
-# UB.predict_to_csv("data\\test_index.csv")
+
+UB.setup("data\\train.csv", 5)
+UB.predict_to_csv("data\\test_index.csv")
