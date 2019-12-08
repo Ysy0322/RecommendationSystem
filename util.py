@@ -44,7 +44,7 @@ def save_csv_from_preference_matrix(matrix, path):
 
 
 def save_csv_from_rating(matrix, path):
-    numpy.savetxt(path, matrix, delimiter=',', header='userID,itemID,rating', comments='', fmt='%0i,%0i,%0.2f')
+    numpy.savetxt(path, matrix, delimiter=',', header='userID,itemID,rating', comments='', fmt='%0i,%0i,%0.6f')
 
 
 '''

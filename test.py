@@ -8,8 +8,9 @@ def user_based_predicate():
     UB = ub.userBasedRecommSys()
     print("Test User Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
     # UB.setup("train_mini.csv", 3)
-    UB.setup("data\\train.csv", 10)
-    UB.predict_to_csv("data\\test_index.csv", "data\\user_based\\user_based_predict_k_10.csv")
+    UB.setup("data\\train.csv", 1)
+    # UB.predict_to_csv("data\\test_index.csv")
+    UB.predict_to_csv("data\\test_index.csv", False)
     print("Test User Based Recommendation System end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
 
 

@@ -1,5 +1,7 @@
 import datetime
 
+from sklearn.metrics import pairwise_distances
+
 import util
 import numpy
 
@@ -14,12 +16,15 @@ import numpy
 class itemBasedRecommSys:
     def __init__(self):
         self.preference_matrix_T = []
+        self.user = []
+        self.item = []
         self.user_n = 0
         self.item_m = 0
         self.item_similarity_matrix = []
 
     def setup(self, path):
-        self.preference_matrix_T = util.read_file(path).T
+        preference_matrix, self.user, self.item = util.read_file(path)
+        self.preference_matrix_T = preference_matrix.T
         self.item_m = len(self.preference_matrix_T)
         self.user_n = len(self.preference_matrix_T[0])
         self.item_similarity_matrix = self.get_item_similarity_matrix()
@@ -37,68 +42,60 @@ class itemBasedRecommSys:
     预测用户的评分
     '''
 
-    def predicate_rating(self):
+    def predict(self, path):
+        print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        prediction = self.item_similarity_matrix.dot(self.preference_matrix_T) / numpy.array(
+            numpy.abs(self.item_similarity_matrix).sum())
+        print(prediction)
+        # prediction = self.preference_matrix_T.dot(similarity) / np.array([np.abs(similarity).sum(axis=1)])
+        test_index = util.read_file(path, False)
+        predict = []
+        for i in range(len(test_index)):
+            to_list = []
+            to_list.extend(test_index[i])
+            u = test_index[i][0]
+            m = test_index[i][1]
+            to_list.append(prediction[self.item.index(m)][u])
+            predict.append(to_list)
+        print("预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        return predict
+
+    def predict_to_csv(self, test_path):
+        save_path = "data\\item_based\\item_based_predict_0.csv"
+        # util.save_csv_from_rating(self.predict(test_path), save_path)
+        util.save_csv_from_rating(self.predict_0(test_path), save_path)
+
+    def predict_0(self, path):
+        print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        test_index = util.read_file(path, False)
+        predict = []
+        for i in range(len(test_index)):
+            to_list = []
+            to_list.extend(test_index[i])
+            u = test_index[i][0]
+            m = test_index[i][1]
+            to_list.append(self.predicate_rating(u, m))
+            predict.append(to_list)
+        print("预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print(predict)
+        return predict
+
+    def predicate_rating(self, u, m):
         global ab_sim_m12, sim_multi_m12
-        for u in range(self.user_n):
-            for i in range(self.item_m):
-                if self.preference_matrix_T[i][u] == 0.0 or self.preference_matrix_T[i][u] is None:
-                    sim_multi_m12 = 0.0
-                    ab_sim_m12 = 0.0
-                    for m in range(self.item_m):
-                        sim_multi_m12 += self.item_similarity_matrix[i][m] * self.preference_matrix_T[m][u]
-                        ab_sim_m12 += self.item_similarity_matrix[i][m]
-                    if ab_sim_m12 != 0.0:
-                        self.preference_matrix_T[i][u] = sim_multi_m12 / ab_sim_m12
-        return self.preference_matrix_T
+        pre = 0.0
+        sim_multi_m12 = 0.0
+        ab_sim_m12 = 0.0
+        m = self.item.index(m)
+        for m1 in range(self.item_m):
+            # m1 = self.item.index(m1)
+            if self.preference_matrix_T[m][u] != 0.0:
+                sim_multi_m12 += self.item_similarity_matrix[m][m1] * self.preference_matrix_T[m][u]
+                ab_sim_m12 += numpy.abs(self.item_similarity_matrix[m][m1])
+        if ab_sim_m12 != 0.0:
+            pre = sim_multi_m12 / ab_sim_m12
+        return pre
 
-
-# '''
-# Calculate RMSE
-# '''
-#
-# def calculate_rmse(self, path):
-#     target_matrix = util.read_file(path)
-#     return util.RMSE(numpy.array(self.preference_matrix), numpy.array(target_matrix))
 
 ib = itemBasedRecommSys()
-ib.setup("train.csv")
-# print(ib.preference_matrix_T)
-#
-# print(ib.get_similarity_matrix())
-# print(ib.item_m)
-# print(ib.user_n)
-# print(ib.item_similarity_matrix)
-print(ib.item_similarity_matrix)
-print(len(ib.item_similarity_matrix))
-print(len(ib.preference_matrix_T))
-print(len(ib.preference_matrix_T[0]))
-
-
-
-
-R = numpy.array([[3, 0.0, 4, 0.0, 0.0],
-                 [4.5, 0.0, 0.0, 3.5, 4.0],
-                 [0.0, 4.0, 4.0, 4.0, 3.5]])
-
-print(type(R))
-similarity = numpy.corrcoef(R)
-print(similarity)
-mean_user_rating = R.mean(axis=1)  # axis=1 计算每行
-print(type(mean_user_rating))
-
-
-def predict(R, similarity, type='item'):
-    prediction = []
-    if type == 'user':
-        print(mean_user_rating)
-
-        rating_d = numpy.where(R > 0, R - mean_user_rating[:, numpy.newaxis], 0)
-        print(rating_d)
-        prediction = mean_user_rating[:, numpy.newaxis] + similarity.dot(rating_d) / numpy.array(
-            [numpy.abs(similarity).sum(axis=1)]).T
-    # elif type == 'item':
-    # prediction = rating_d.dot(similarity) / numpy.array([numpy.abs(similarity).sum(axis=1)])
-    return prediction
-
-
-print(predict(numpy.array(R), similarity, 'user'))
+ib.setup("data\\train.csv")
+ib.predict_to_csv("data\\test_index.csv")
