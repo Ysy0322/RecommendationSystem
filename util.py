@@ -53,7 +53,29 @@ rmse(numpy.array(),numpy.array())
 '''
 
 
-def RMSE(predictions, targets):
-    return numpy.sqrt(((predictions - targets) ** 2).mean())
+def RMSE(predict1_path, predict2_path):
+    predict1 = pd.read_csv(predict1_path)
+    predict2 = pd.read_csv(predict2_path)
+
+    rating1 = numpy.array(predict1['rating'])
+    rating2 = numpy.array(predict2['rating'])
+
+    return numpy.sqrt(((rating1 - rating2) ** 2).mean())
 
 
+rmse_3_5 = RMSE("data\\user_based\\user_based_predict_k_3.csv", "data\\user_based\\user_based_predict_k_5.csv")
+rmse_3_10 = RMSE("data\\user_based\\user_based_predict_k_3.csv", "data\\user_based\\user_based_predict_k_10.csv")
+rmse_5_10 = RMSE("data\\user_based\\user_based_predict_k_5.csv", "data\\user_based\\user_based_predict_k_10.csv")
+rmse_5_20 = RMSE("data\\user_based\\user_based_predict_k_5.csv", "data\\user_based\\user_based_predict_k_20.csv")
+rmse_10_20 = RMSE("data\\user_based\\user_based_predict_k_10.csv", "data\\user_based\\user_based_predict_k_20.csv")
+rmse_10_50 = RMSE("data\\user_based\\user_based_predict_k_10.csv", "data\\user_based\\user_based_predict_k_50.csv")
+rmse_10_all = RMSE("data\\user_based\\user_based_predict_k_10.csv",
+                   "data\\user_based\\user_based_predict_without_k.csv")
+
+print("RMSE between k=3 and k=5 is: " + str(rmse_3_5))
+print("RMSE between k=3 and k=10 is: " + str(rmse_3_10))
+print("RMSE between k=5 and k=10 is: " + str(rmse_5_10))
+print("RMSE between k=5 and k=20 is: " + str(rmse_5_20))
+print("RMSE between k=10 and k=20 is: " + str(rmse_10_20))
+print("RMSE between k=10 and k=50 is: " + str(rmse_10_50))
+print("RMSE between k=10 and without k is: " + str(rmse_10_all))
