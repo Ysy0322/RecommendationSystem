@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01489779-6a91-4301-971c-7bd0f9c1dcad" name="Default Changelist" comment="第一次优化矩阵运算">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/item_based/item_based_predict_k_100.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/item_based/item_based_predict_k_50.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/item_based/item_based_predict_k_500.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RecommendationSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RecommendationSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB2文档.docx" beforeDir="false" afterPath="$PROJECT_DIR$/LAB2文档.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_without_k.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/item_based/item_based_predict_without_k.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/item_based_v1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/item_based_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/item_based_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/item_based_v3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_based_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_based_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -233,7 +220,7 @@
       <workItem from="1575175551068" duration="960000" />
       <workItem from="1575176620400" duration="13656000" />
       <workItem from="1575468352393" duration="74564000" />
-      <workItem from="1575783774570" duration="20537000" />
+      <workItem from="1575783774570" duration="20812000" />
     </task>
     <task id="LOCAL-00001" summary="user_based and item_based partial">
       <created>1574953830152</created>
@@ -291,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575796340127</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="第一次优化矩阵运算">
+      <created>1575808756526</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575808756526</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,13 +307,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user_based and item_based partial" />
     <MESSAGE value="user_based and item_based mini tested" />
-    <MESSAGE value="第一次优化矩阵运算" />
     <MESSAGE value="user based completed v2" />
     <MESSAGE value="add data" />
     <MESSAGE value="更新文档" />
     <MESSAGE value="user based 终于正常了！测试完成 &amp; item based 还在测试中ing" />
     <MESSAGE value="add test result data" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test result data" />
+    <MESSAGE value="第一次优化矩阵运算" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一次优化矩阵运算" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RecommendationSystem$user_based.coverage" NAME="user_based Coverage Results" MODIFIED="1575511103003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
