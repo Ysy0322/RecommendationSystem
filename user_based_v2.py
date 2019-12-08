@@ -61,7 +61,7 @@ class userBasedRecommSys:
 
     '''
     计算用户u的前k邻居用户
-    返回[list(用户的评分，用户的index), , ,]
+    返回list[用户的评分], List[用户的index]
     '''
 
     def k_neighbors(self, u):
@@ -103,7 +103,6 @@ class userBasedRecommSys:
 
     def predict_without_k(self, path):
         print("不考虑k预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-        # rating_d = numpy.array(self.preference_matrix) - numpy.array(self.average_rate_array)[:, numpy.newaxis]
         rating_d = numpy.where(numpy.array(self.preference_matrix) > 0,
                                numpy.array(self.preference_matrix) -
                                numpy.array(self.average_rate_array)[:, numpy.newaxis], 0)
@@ -117,7 +116,10 @@ class userBasedRecommSys:
             to_list.extend(test_index[i])
             u = test_index[i][0]
             m = test_index[i][1]
-            to_list.append(prediction[u][self.item.index(m)])
+            rating = round(prediction[u][self.item.index(m)], 1)
+            if rating > 5.0:
+                rating = 5.0
+            to_list.append(rating)
             predict.append(to_list)
         print("不考虑k预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return predict
@@ -128,7 +130,7 @@ class userBasedRecommSys:
     根据test_index中的index对对应的index进行预测
     '''
 
-    def predict_with_index(self, path):
+    def predict_with_k(self, path):
         print("考虑k预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
@@ -149,9 +151,13 @@ class userBasedRecommSys:
             else:
                 for j in range(self.k_nearest):
                     v = similarity_u_index_k[j]
-                    sum_mul += similarity_u_k[j] * \
-                               (self.preference_matrix[v][self.item.index(m)] - self.average_rate_array[v])
-                to_list.append(average_u + sum_mul / abs_sum_sim)
+                    if self.preference_matrix[v][self.item.index(m)] != 0.0:
+                        sum_mul += similarity_u_k[j] * \
+                                   (self.preference_matrix[v][self.item.index(m)] - self.average_rate_array[v])
+                rating = round(average_u + sum_mul / abs_sum_sim, 1)
+                if rating > 5.0:
+                    rating = 5.0
+                to_list.append(rating)
                 predict.append(to_list)
         print("考虑k预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return predict
@@ -159,7 +165,14 @@ class userBasedRecommSys:
     def predict_to_csv(self, test_path, k=True):
         if k:
             save_path = "data\\user_based\\user_based_predict_k_" + str(self.k_nearest) + ".csv"
-            util.save_csv_from_rating(self.predict_with_index(test_path), save_path)
+            util.save_csv_from_rating(self.predict_with_k(test_path), save_path)
         else:
-            save_path = "data\\user_based\\user_based_predict_without_k_0.csv"
+            save_path = "data\\user_based\\user_based_predict_without_k.csv"
             util.save_csv_from_rating(self.predict_without_k(test_path), save_path)
+
+
+UB = userBasedRecommSys()
+print("Test User Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+UB.setup("data\\train.csv", 1)
+UB.predict_to_csv("data\\test_index.csv", False)
+# UB.predict_to_csv("data\\test_index.csv")
