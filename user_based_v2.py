@@ -32,6 +32,7 @@ class userBasedRecommSys:
         self.item_m = len(self.item)
         self.k_nearest = k
         self.average_rate_array = self.get_average_rating()
+        print("训练集数据所有用户的平均评分：" + str(numpy.array(self.average_rate_array).mean()))
         self.user_similarity_matrix = self.get_user_similarity_matrix()
         self.similarity_uv_k, self.similarity_index_k = self.get_k_neighbors_matrix()
 

@@ -1,7 +1,4 @@
 import datetime
-
-from sklearn.metrics import pairwise_distances
-
 import util
 import numpy
 
@@ -42,7 +39,7 @@ class itemBasedRecommSys:
     '''
 
     def get_average_rating(self):
-        return self.preference_matrix_T.sum(0) / (self.preference_matrix_T != 0).sum(0)
+        return self.preference_matrix_T.sum(1) / (self.preference_matrix_T != 0).sum(1)
 
     '''
     计算商品的相似度矩阵
@@ -94,7 +91,7 @@ class itemBasedRecommSys:
 
     # 带有k的用户对商品的评分预测
 
-    def predict(self, path, k=True):
+    def predict(self, path, k=False):
         print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
@@ -113,7 +110,7 @@ class itemBasedRecommSys:
 
     # 预测用户u，对商品m的评分
 
-    def predicate_u_m(self, u, m, k=True):
+    def predicate_u_m(self, u, m, k=False):
         global ab_sim_m12, sim_multi_m12
         pre = 0.0
         sim_multi_m12 = 0.0
@@ -134,12 +131,12 @@ class itemBasedRecommSys:
         if ab_sim_m12 != 0.0:
             pre = sim_multi_m12 / ab_sim_m12
         if pre <= 0.0:
-            pre = self.average_rate_array[u]
+            pre = self.average_rate_array[m]
         return pre
 
     # 将预测结果写入csv文件
 
-    def predict_to_csv(self, test_path, k=True):
+    def predict_to_csv(self, test_path, k=False):
         if k:
             save_path = "data\\item_based\\item_based_predict_k_" + str(self.k_nearest) + ".csv"
             util.save_csv_from_rating(self.predict(test_path, True), save_path)
@@ -151,4 +148,4 @@ class itemBasedRecommSys:
 IB = itemBasedRecommSys()
 print("Test Item Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
 IB.setup("data\\train.csv", 1)
-IB.predict_to_csv("data\\test_index.csv", False)
+IB.predict_to_csv("data\\test_index.csv")

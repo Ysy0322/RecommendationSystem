@@ -21,7 +21,7 @@ def item_based_predict():
     print("Test Item Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
     # 不考虑k的基于商品的预测
     IB.setup("data\\train.csv", 500)
-    IB.predict_to_csv("data\\test_index.csv", False)
+    IB.predict_to_csv("data\\test_index.csv")
     # 考虑k值的基于商品的预测
     # IB.predict_to_csv("data\\test_index.csv", True)
 
