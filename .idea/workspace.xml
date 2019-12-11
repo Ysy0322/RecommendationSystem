@@ -2,43 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01489779-6a91-4301-971c-7bd0f9c1dcad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/PMF_ALS-WR.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/item_based_test_predict_k_500.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/user_based_test_predict_k_10.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/user_based_test_predict_k_20.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/user_based_test_predict_k_3.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/user_based_test_predict_k_5.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/user_based_test_predict_k_50.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/self_test/user_based_test_predict_without_k.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/part2_item_based.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/part3_PMF_ALS.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predict/out_1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/self_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LAB2文档.docx" beforeDir="false" afterPath="$PROJECT_DIR$/LAB2文档.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MF.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MF_add_bais.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PMF.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_k_10.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_k_100.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_k_5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_k_50.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_k_500.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/item_based/item_based_predict_without_k.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train_mini.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_10.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_100.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_20.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_5.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_k_50.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/user_based/user_based_predict_without_k.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/item_based_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/part4_optimize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_based_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1_user_based.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -256,7 +221,7 @@
       <workItem from="1575468352393" duration="74564000" />
       <workItem from="1575783774570" duration="69338000" />
       <workItem from="1575980101191" duration="15337000" />
-      <workItem from="1576040859504" duration="23682000" />
+      <workItem from="1576040859504" duration="24864000" />
     </task>
     <task id="LOCAL-00001" summary="user_based and item_based partial">
       <created>1574953830152</created>
@@ -342,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575871495509</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="PMF_ALS 完成">
+      <created>1576073555307</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1576073555307</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +344,8 @@
     <MESSAGE value="user based &amp; item based 完成啦!" />
     <MESSAGE value="更新文档 &amp; 计算不同参数预测结果的RMSE" />
     <MESSAGE value="更新文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新文档" />
+    <MESSAGE value="PMF_ALS 完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="PMF_ALS 完成" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RecommendationSystem$user_based.coverage" NAME="user_based Coverage Results" MODIFIED="1575511103003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
