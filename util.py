@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy
+import matplotlib.pyplot as plt
+import seaborn
 
 '''
 读取csv文件
@@ -24,6 +26,8 @@ def read_file(path, train=True):
         return preference_matrix, user, item
     else:
         df = pd.read_csv(path)
+        # for self_test
+        # df = df.drop(['rating', 'timestamp'], axis=1)
         return df.values
 
 
@@ -39,43 +43,70 @@ def save_csv_from_preference_matrix(matrix, path):
     data.index = data.index.rename('itemID', level=1)
     data.name = 'rating'
     data = data.reset_index()
-    numpy.savetxt(path, data, delimiter=',', header='userID,itemID,rating', comments='', newline='\n',
-                  fmt='%0i,%0i,%10.2f')
+    numpy.savetxt(path, data, delimiter=',', header='userID,itemID,rating', comments='', newline='\n')
+
+
+'''
+userID,itemID,rating 写入csv文件
+'''
 
 
 def save_csv_from_rating(matrix, path):
-    numpy.savetxt(path, matrix, delimiter=',', header='userID,itemID,rating', comments='', fmt='%0i,%0i,%0.1f')
+    numpy.savetxt(path, matrix, delimiter=',', header='userID,itemID,rating', comments='', fmt='%0i,%0i,%f')
 
 
 '''
-计算估计值与实际值的RMSE 差
-rmse(numpy.array(),numpy.array())
+生成随机数矩阵
+0~1的随机浮点数
 '''
 
 
-def RMSE(predict1_path, predict2_path):
-    predict1 = pd.read_csv(predict1_path)
-    predict2 = pd.read_csv(predict2_path)
+def generate_random(row, col):
+    numpy.random.seed(0)
+    return numpy.random.random((row, col))
 
-    rating1 = numpy.array(predict1['rating'])
-    rating2 = numpy.array(predict2['rating'])
+
+'''
+计算预测过程中的mean_squared_error
+'''
+
+
+def get_rmse(predict, target):
+    predict = predict[target.nonzero()].flatten()
+    target = target[target.nonzero()].flatten()
+    return numpy.sqrt(((predict - target) ** 2).mean())
+
+
+'''
+for self_test
+计算估计值与实际值的get_rmse 差
+get_rmse(numpy.array(),numpy.array())
+'''
+
+
+def get_rmse_with_csv(predict_path, target_path):
+    predict = pd.read_csv(predict_path)
+    target = pd.read_csv(target_path)
+
+    rating1 = numpy.array(predict['rating'])
+    rating2 = numpy.array(target['rating'])
 
     return numpy.sqrt(((rating1 - rating2) ** 2).mean())
 
 
-rmse_3_5 = RMSE("data\\user_based\\user_based_predict_k_3.csv", "data\\user_based\\user_based_predict_k_5.csv")
-rmse_3_10 = RMSE("data\\user_based\\user_based_predict_k_3.csv", "data\\user_based\\user_based_predict_k_10.csv")
-rmse_5_10 = RMSE("data\\user_based\\user_based_predict_k_5.csv", "data\\user_based\\user_based_predict_k_10.csv")
-rmse_5_20 = RMSE("data\\user_based\\user_based_predict_k_5.csv", "data\\user_based\\user_based_predict_k_20.csv")
-rmse_10_20 = RMSE("data\\user_based\\user_based_predict_k_10.csv", "data\\user_based\\user_based_predict_k_20.csv")
-rmse_10_50 = RMSE("data\\user_based\\user_based_predict_k_10.csv", "data\\user_based\\user_based_predict_k_50.csv")
-rmse_10_all = RMSE("data\\user_based\\user_based_predict_k_10.csv",
-                   "data\\user_based\\user_based_predict_without_k.csv")
+'''
+画图
+'''
 
-print("RMSE between k=3 and k=5 is: " + str(rmse_3_5))
-print("RMSE between k=3 and k=10 is: " + str(rmse_3_10))
-print("RMSE between k=5 and k=10 is: " + str(rmse_5_10))
-print("RMSE between k=5 and k=20 is: " + str(rmse_5_20))
-print("RMSE between k=10 and k=20 is: " + str(rmse_10_20))
-print("RMSE between k=10 and k=50 is: " + str(rmse_10_50))
-print("RMSE between k=10 and without k is: " + str(rmse_10_all))
+
+def draw(iter_array, rmse_array):
+    seaborn.set()
+    color = ['g', 'r', 'b', 'y', 'c']
+    # k w
+    for i in range(len(rmse_array)):
+        plt.plot(iter_array, rmse_array[i][1], label='Train for k_factors = ' + str(rmse_array[i][0]), linewidth=1,
+                 color=color[i])
+    plt.xlabel('iterate times', fontsize=15)
+    plt.ylabel('RMSE', fontsize=15)
+    plt.legend(loc='best', fontsize=15)
+    plt.show()

@@ -1,35 +1,52 @@
-import user_based_v2 as ub
-import item_based_v2 as ib
+import part1_user_based as ub
+import part2_item_based as ib
+import part3_PMF_ALS as pmf_als
+import part4_optimize as opt
 import datetime
 
 
 def user_based_predict():
-    UB = ub.userBasedRecommSys()
+    UB = ub.UserBased()
     print("Test User Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-    # 考虑k值的基于用户的预测
-    UB.setup("data\\train.csv", 5)
-    print(UB.item)
+    UB.setup("data\\train.csv", k=20)
+    # 输出路径 predict\\out_1.csv
     UB.predict_to_csv("data\\test_index.csv")
-    # 不考虑k值的基于用户的预测
-    UB.predict_to_csv("data\\test_index.csv", False)
-
     print("Test User Based Recommendation System end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
 
 
 def item_based_predict():
-    IB = ib.itemBasedRecommSys()
+    IB = ib.ItemBased()
     print("Test Item Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-    # 不考虑k的基于商品的预测
-    IB.setup("data\\train.csv", 500)
+    IB.setup("data\\train.csv")
+    # 输出路径 predict\\out_2.csv
     IB.predict_to_csv("data\\test_index.csv")
-    # 考虑k值的基于商品的预测
-    # IB.predict_to_csv("data\\test_index.csv", True)
-
     print("Test Item Based Recommendation System end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
 
 
-if __name__ == '__main__':
+def PMF_ALS_based_predict():
+    PMF_ALS = pmf_als.PMF_ALS()
+    print("PMF_ALS Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+    iter_times_array = [25]
+    PMF_ALS.setup("data\\train.csv", k_factors=500)
+    # 输出路径 predict\\out_3.csv
+    PMF_ALS.predict_to_csv("data\\test_index.csv", iter_times_array)
+    print("PMF_ALS Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
 
+
+def optimized_predict():
+    OPT = opt.ItemBasedOpt()
+    print("Optimized Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+    OPT.setup("data\\train.csv", 1)
+    # 输出路径 predict\\out_4.csv
+    OPT.predict_to_csv("data\\test_index.csv")
+    print("Optimized Recommendation System end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+
+
+if __name__ == '__main__':
     user_based_predict()
 
     item_based_predict()
+
+    PMF_ALS_based_predict()
+
+    optimized_predict()

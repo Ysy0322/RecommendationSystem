@@ -3,14 +3,16 @@ import util
 import numpy
 
 '''
-基于商品的推荐系统
+对基于商品的推荐系统进行优化
+优化方式，修改相似度计算函数
+用Pearson 相关性得到商品之间的相似度矩阵
 ① 得到preference_matrix
 ② 计算两个商品之间的similarity
 ③ 根据预估公式估计用户对其他商品的评分
 '''
 
 
-class itemBasedRecommSys:
+class ItemBasedOpt:
     def __init__(self):
         self.preference_matrix_T = []
         self.user = []
@@ -89,10 +91,12 @@ class itemBasedRecommSys:
         print("计算前k相似的商品 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return similarity_m12_k, similarity_index_k
 
-    # 带有k的用户对商品的评分预测
+    '''
+    读取test_index.csv文件，进行预测，返回预测结果
+    '''
 
     def predict(self, path, k=False):
-        print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print("predict start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
         for i in range(len(test_index)):
@@ -101,16 +105,16 @@ class itemBasedRecommSys:
             u = test_index[i][0]
             m = test_index[i][1]
             if k:
-                to_list.append(self.predicate_u_m(u, m, True))
+                to_list.append(self.predict_u_m(u, m, True))
             else:
-                to_list.append(self.predicate_u_m(u, m, False))
+                to_list.append(self.predict_u_m(u, m, False))
             predict.append(to_list)
-        print("预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print("predict end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return predict
 
     # 预测用户u，对商品m的评分
 
-    def predicate_u_m(self, u, m, k=False):
+    def predict_u_m(self, u, m, k=False):
         global ab_sim_m12, sim_multi_m12
         pre = 0.0
         sim_multi_m12 = 0.0
@@ -141,11 +145,22 @@ class itemBasedRecommSys:
             save_path = "data\\item_based\\item_based_predict_k_" + str(self.k_nearest) + ".csv"
             util.save_csv_from_rating(self.predict(test_path, True), save_path)
         else:
-            save_path = "data\\item_based\\item_based_predict_without_k.csv"
+            save_path = "predict\\out_4.csv"
             util.save_csv_from_rating(self.predict(test_path, False), save_path)
 
+    '''
+    for self_test
+    def predict_for_test(self, test_path, k=False):
+        if k:
+            save_path = "data\\self_test\\item_based_test_predict_k_" + str(self.k_nearest) + ".csv"
+            util.save_csv_from_rating(self.predict(test_path), save_path)
+        else:
+            save_path = "data\\self_test\\item_based_test_predict_cos_without_k.csv"
+            util.save_csv_from_rating(self.predict(test_path), save_path)
+        '''
 
-IB = itemBasedRecommSys()
-print("Test Item Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+
+IB = ItemBasedOpt()
 IB.setup("data\\train.csv", 1)
 IB.predict_to_csv("data\\test_index.csv")
+# IB.predict_for_test("data\\train.csv")
