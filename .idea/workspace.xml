@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="01489779-6a91-4301-971c-7bd0f9c1dcad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LAB2文档.docx" beforeDir="false" afterPath="$PROJECT_DIR$/LAB2文档.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out_3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1_user_based.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1_user_based.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part2_item_based.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_item_based.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part3_PMF_ALS.py" beforeDir="false" afterPath="$PROJECT_DIR$/part3_PMF_ALS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part4_optimize.py" beforeDir="false" afterPath="$PROJECT_DIR$/part4_optimize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict/out_3_.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -230,7 +222,7 @@
       <workItem from="1575468352393" duration="74564000" />
       <workItem from="1575783774570" duration="69338000" />
       <workItem from="1575980101191" duration="15337000" />
-      <workItem from="1576040859504" duration="58680000" />
+      <workItem from="1576040859504" duration="59779000" />
     </task>
     <task id="LOCAL-00001" summary="user_based and item_based partial">
       <created>1574953830152</created>
@@ -337,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576158512599</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="final version">
+      <created>1576160197711</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1576160197711</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +368,8 @@
     <MESSAGE value="PMF_ALS 完成" />
     <MESSAGE value="更新文档" />
     <MESSAGE value="fix PMF_ALS" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix PMF_ALS" />
+    <MESSAGE value="final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="final version" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RecommendationSystem$user_based.coverage" NAME="user_based Coverage Results" MODIFIED="1575511103003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
