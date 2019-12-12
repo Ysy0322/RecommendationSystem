@@ -177,11 +177,6 @@ class PMF_ALS:
         return train_rmse, test_rmse
 
 
-pmf_als = PMF_ALS()
-
-iter_times_array = [100]
-pmf_als.setup("data\\train.csv", k_factors=10, reg=0.001)
-pmf_als.predict_to_csv("data\\test_index.csv", iter_times_array)
 
 # '''
 # for self_test

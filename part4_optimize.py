@@ -80,7 +80,7 @@ class ItemBasedOpt:
     '''
 
     def get_k_neighbors_matrix(self):
-        print("计算前k相似的商品 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        # print("计算前k相似的商品 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         similarity_m12_k = [0.0] * self.item_m
         similarity_index_k = [0.0] * self.item_m
         for m in range(self.item_m):
@@ -88,7 +88,7 @@ class ItemBasedOpt:
             similarity_m12_k_res, similarity_index_k_res = self.k_neighbors(m)
             similarity_m12_k[m] = similarity_m12_k_res
             similarity_index_k[m] = similarity_index_k_res
-        print("计算前k相似的商品 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        # print("计算前k相似的商品 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return similarity_m12_k, similarity_index_k
 
     '''
@@ -96,7 +96,7 @@ class ItemBasedOpt:
     '''
 
     def predict(self, path, k=False):
-        print("predict start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        # print("predict start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
         for i in range(len(test_index)):
@@ -159,8 +159,4 @@ class ItemBasedOpt:
             util.save_csv_from_rating(self.predict(test_path), save_path)
         '''
 
-
-IB = ItemBasedOpt()
-IB.setup("data\\train.csv", 1)
-IB.predict_to_csv("data\\test_index.csv")
 # IB.predict_for_test("data\\train.csv")

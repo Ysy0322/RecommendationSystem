@@ -132,7 +132,7 @@ class UserBased:
     '''
 
     def predict_with_k(self, path):
-        print("k = " + str(self.k_nearest) + ", 预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print("k = " + str(self.k_nearest) + ", predict start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
         for i in range(len(test_index)):
@@ -160,7 +160,7 @@ class UserBased:
                     rating = 5.0
                 to_list.append(rating)
                 predict.append(to_list)
-        print("k = " + str(self.k_nearest) + ", 预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print("k = " + str(self.k_nearest) + ", predict end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return predict
 
     def predict_to_csv(self, test_path, k=True):

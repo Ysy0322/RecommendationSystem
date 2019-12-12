@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01489779-6a91-4301-971c-7bd0f9c1dcad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/predict/out_3_.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LAB2文档.docx" beforeDir="false" afterPath="$PROJECT_DIR$/LAB2文档.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out_3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part1_user_based.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1_user_based.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_item_based.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_item_based.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part3_PMF_ALS.py" beforeDir="false" afterPath="$PROJECT_DIR$/part3_PMF_ALS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part4_optimize.py" beforeDir="false" afterPath="$PROJECT_DIR$/part4_optimize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict/out_3_.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
@@ -74,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.part3_PMF_ALS">
+  <component name="RunManager" selected="Python.test">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="RecommendationSystem" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -89,25 +93,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="item_based_v2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="RecommendationSystem" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\part2_item_based.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,6 +158,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RecommendationSystem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="util" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RecommendationSystem" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,18 +198,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.util" />
-      <item itemvalue="Python.item_based_v2" />
       <item itemvalue="Python.part3_PMF_ALS" />
       <item itemvalue="Python.part2_item_based" />
       <item itemvalue="Python.part4_optimize" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.part3_PMF_ALS" />
         <item itemvalue="Python.util" />
         <item itemvalue="Python.part4_optimize" />
         <item itemvalue="Python.part2_item_based" />
-        <item itemvalue="Python.item_based_v2" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +230,7 @@
       <workItem from="1575468352393" duration="74564000" />
       <workItem from="1575783774570" duration="69338000" />
       <workItem from="1575980101191" duration="15337000" />
-      <workItem from="1576040859504" duration="57186000" />
+      <workItem from="1576040859504" duration="58680000" />
     </task>
     <task id="LOCAL-00001" summary="user_based and item_based partial">
       <created>1574953830152</created>
@@ -326,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576074200259</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix PMF_ALS">
+      <created>1576158512599</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1576158512599</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +368,8 @@
     <MESSAGE value="更新文档 &amp; 计算不同参数预测结果的RMSE" />
     <MESSAGE value="PMF_ALS 完成" />
     <MESSAGE value="更新文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新文档" />
+    <MESSAGE value="fix PMF_ALS" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix PMF_ALS" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RecommendationSystem$user_based.coverage" NAME="user_based Coverage Results" MODIFIED="1575511103003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

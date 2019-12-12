@@ -60,7 +60,7 @@ class ItemBased:
     '''
 
     def predict(self, path):
-        print("预测 start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print("predict start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         test_index = util.read_file(path, False)
         predict = []
         for i in range(len(test_index)):
@@ -70,7 +70,7 @@ class ItemBased:
             m = test_index[i][1]
             to_list.append(self.predict_u_m(u, m))
             predict.append(to_list)
-        print("预测 end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
+        print("predict end: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
         return predict
 
     # 预测用户u，对商品m的评分
