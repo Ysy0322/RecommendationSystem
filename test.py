@@ -26,10 +26,12 @@ def item_based_predict():
 def PMF_ALS_based_predict():
     PMF_ALS = pmf_als.PMF_ALS()
     print("PMF_ALS Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
-    iter_times_array = [25]
-    PMF_ALS.setup("data\\train.csv", k_factors=500)
-    # 输出路径 predict\\out_3.csv
-    PMF_ALS.predict_to_csv("data\\test_index.csv", iter_times_array)
+    pmf_als = PMF_ALS()
+
+    iter_times_array = [100]
+    pmf_als.setup("data\\train.csv", k_factors=10, reg=0.001)
+    # 输出路径 predict\\out_3_.csv
+    pmf_als.predict_to_csv("data\\test_index.csv", iter_times_array)
     print("PMF_ALS Based Recommendation System start: " + datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S'))
 
 

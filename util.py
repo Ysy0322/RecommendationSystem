@@ -3,6 +3,8 @@ import numpy
 import matplotlib.pyplot as plt
 import seaborn
 
+# from sklearn.model_selection import train_test_split
+
 '''
 读取csv文件
 获取preference matrix
@@ -62,7 +64,7 @@ def save_csv_from_rating(matrix, path):
 
 
 def generate_random(row, col):
-    numpy.random.seed(0)
+    numpy.random.seed(1)
     return numpy.random.random((row, col))
 
 
@@ -110,3 +112,38 @@ def draw(iter_array, rmse_array):
     plt.ylabel('RMSE', fontsize=15)
     plt.legend(loc='best', fontsize=15)
     plt.show()
+
+
+def draw_train_test(iter_array, train_rmse, test_rmse):
+    plt.plot(iter_array, train_rmse, label='Train', linewidth=1)
+    plt.plot(iter_array, test_rmse, label='Test', linewidth=1)
+
+    plt.xlabel('iterations', fontsize=15)
+    plt.ylabel('RMSE', fontsize=15)
+    plt.legend(loc='best', fontsize=15)
+    plt.show()
+
+
+def train_test_split(path):
+    ratings, user_n, item_m = read_file(path)
+    test = numpy.zeros(ratings.shape)
+    train = ratings.copy()
+    count = 0
+    for user in range(len(user_n)):
+        for item in range(len(item_m)):
+            if (ratings[user][item]) != 0.0:
+                count += 1
+                if count % 3 == 0:
+                    train[user][item] = 0
+                    test[user][item] = ratings[user][item]
+    # Test and train are truly disjoint
+    assert (numpy.all((train * test) == 0))
+    return train, numpy.array(test)
+
+# print(train_test_split("data\\train.csv"))
+
+# train = pd.read_csv("data\\train.csv")
+# X, y = train[['userID', 'itemID']], train['rating']
+# 【利用train_test_split方法，将X,y随机划分为训练集（X_train），训练集标签（y_train），测试集（X_test），测试集标签（y_test），按训练集：测试集=7:3的概率划分，到此步骤，可以直接对数据进行处理】
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+# print(X_train, X_test, y_train, y_test)

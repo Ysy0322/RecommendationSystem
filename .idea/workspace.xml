@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01489779-6a91-4301-971c-7bd0f9c1dcad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/predict/out_3_.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LAB2文档.docx" beforeDir="false" afterPath="$PROJECT_DIR$/LAB2文档.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3_PMF_ALS.py" beforeDir="false" afterPath="$PROJECT_DIR$/part3_PMF_ALS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,24 +41,25 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/data/self_test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/predict" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\predict" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\self_test" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem" />
       <recent name="E:\智能系统原理与开发\Lab2 推荐系统\RecommendationSystem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\predict" />
+      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem" />
+      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\PMF_ALS" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\self_test" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data" />
-      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\predict" />
-      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\round_res" />
-      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\user_based" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -69,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.part4_optimize">
+  <component name="RunManager" selected="Python.part3_PMF_ALS">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="RecommendationSystem" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,9 +201,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.part4_optimize" />
         <item itemvalue="Python.part3_PMF_ALS" />
         <item itemvalue="Python.util" />
+        <item itemvalue="Python.part4_optimize" />
         <item itemvalue="Python.part2_item_based" />
         <item itemvalue="Python.item_based_v2" />
       </list>
@@ -221,7 +226,7 @@
       <workItem from="1575468352393" duration="74564000" />
       <workItem from="1575783774570" duration="69338000" />
       <workItem from="1575980101191" duration="15337000" />
-      <workItem from="1576040859504" duration="24864000" />
+      <workItem from="1576040859504" duration="57186000" />
     </task>
     <task id="LOCAL-00001" summary="user_based and item_based partial">
       <created>1574953830152</created>
@@ -314,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576073555307</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="更新文档">
+      <created>1576074200259</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074200259</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,9 +355,9 @@
     <MESSAGE value="第一次优化矩阵运算" />
     <MESSAGE value="user based &amp; item based 完成啦!" />
     <MESSAGE value="更新文档 &amp; 计算不同参数预测结果的RMSE" />
-    <MESSAGE value="更新文档" />
     <MESSAGE value="PMF_ALS 完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="PMF_ALS 完成" />
+    <MESSAGE value="更新文档" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新文档" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RecommendationSystem$user_based.coverage" NAME="user_based Coverage Results" MODIFIED="1575511103003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
