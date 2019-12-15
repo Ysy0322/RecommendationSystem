@@ -52,8 +52,8 @@ if __name__ == '__main__':
 
     PMF_ALS_based_predict()
 
-
     '''
+    for test
     util.filter_res("predict\\out_1.csv", "predict\\out_1(2).csv")
     util.filter_res("predict\\out_2.csv", "predict\\out_2(2).csv")
     util.filter_res("predict\\out_3.csv", "predict\\out_3(2).csv")
