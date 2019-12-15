@@ -5,7 +5,8 @@ Based on ALS 交替最小二乘法(alternative least square)
 """
 import datetime
 import numpy as np
-from numpy.linalg import solve
+import pandas
+from numpy.linalg import solve, pinv
 import util
 
 
@@ -65,19 +66,26 @@ class PMF_ALS:
 
     def als_function(self, latent_matrix, fixed_matrix, ratings, type='user'):
         FTF = fixed_matrix.T.dot(fixed_matrix)
-        lambdaE = np.eye(self.k_factors) * self.reg
+        lambdaE = np.eye(FTF.shape[0]) * self.reg
 
         if type == 'user':
+
             for u in range(self.user_n):
-                latent_matrix[u, :] = solve((FTF + lambdaE), ratings[u, :].dot(fixed_matrix))
+                # ∑(i，m)(I(i)T I(i) + λE) Un = ∑(i, m)R(i，j) I(i)
+                # Un = （ITI + λE）-1 R(i) I
+                latent_matrix[u, :] = solve((FTF + lambdaE), fixed_matrix.T.dot(ratings[u].T))
+                # solve((FTF + lambdaE), ratings[u].dot(fixed_matrix))
 
         elif type == 'item':
-            for i in range(self.item_m):
-                latent_matrix[i, :] = solve((FTF + lambdaE), ratings[:, i].T.dot(fixed_matrix))
+
+            for m in range(self.item_m):
+                latent_matrix[m, :] = solve((FTF + lambdaE), fixed_matrix.T.dot(ratings[:, m]))
+                # solve((FTF + lambdaE), ratings[:, m].T * (fixed_matrix))
+
         return latent_matrix
 
     '''
-    自定义训练迭代次数，正则化因子
+    自定义训练迭代次数
     '''
 
     def train(self, iterations):
@@ -124,7 +132,7 @@ class PMF_ALS:
             u = test_index[i][0]
             m = test_index[i][1]
             m = self.item.index(m)
-            if res[u][m] <= 0.0:
+            if res[u][m] <= 0.0 or round(res[u][m], 1) < 0.5:
                 to_list.append(self.average_rate_array[u])
             elif res[u][m] > 5:
                 to_list.append(5)
@@ -145,8 +153,8 @@ class PMF_ALS:
             iter_times = iter_array[i]
             save_path = "predict\\out_3.csv"
             # for self_test
-            # save_path = "data\\PMF_ALS\\PMF_ALS_predict_kFactors_" + str(self.k_factors) + '_iter_' + str(
-            #     iter_times) + ".csv"
+            save_path = "data\\PMF_ALS\\PMF_ALS_predict_kFactors_" + str(self.k_factors) + '_reg_' + str(
+                self.reg) + ".csv"
             predict = self.predict_with_index(test_path, iter_times)
             util.save_csv_from_rating(predict, save_path)
             print()
@@ -168,20 +176,24 @@ class PMF_ALS:
             self.train(iter_times - iter_times_left)
             predict = self.predict()
             train = util.get_rmse(predict, self.preference_matrix)
-            test = util.get_rmse(predict, self.test_data)
+            # test = util.get_rmse(predict, self.test_data)
             train_rmse.append(train)
-            test_rmse.append(test)
+            # test_rmse.append(test)
             print('train RMSE: ' + str(train))
-            print('test RMSE: ' + str(test))
+            # print('test RMSE: ' + str(test))
             iter_times_left = iter_times
         return train_rmse, test_rmse
 
 
+pmf_als = PMF_ALS()
 
-# '''
+'''
 # for self_test
-# rmses = []
-# iter_times_array = [1, 2, 5, 10, 25, 50, 100]
-# pmf_als.setup("data\\train.csv", k_factors=200, reg=1)
-# train_rmse, test_rmse = pmf_als.calculate_rmse(iter_times_array)
-# util.draw_train_test(iter_times_array, train_rmse, test_rmse)
+
+iter_times_array = [10]
+pmf_als.setup("data\\train.csv", k_factors=800, reg=0.01)
+# 输出路径 predict\\out_3_.csv
+pmf_als.predict_to_csv("data\\test_index.csv", iter_times_array)
+
+util.filter_res("data\\PMF_ALS\\PMF_ALS_predict_kFactors_800_reg_0.01.csv", "data\\PMF_ALS\\kFactors_800_reg_0.01.csv")
+'''

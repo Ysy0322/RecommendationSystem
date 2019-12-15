@@ -41,7 +41,7 @@ class ItemBasedOpt:
     '''
 
     def get_average_rating(self):
-        return self.preference_matrix_T.sum(1) / (self.preference_matrix_T != 0).sum(1)
+        return self.preference_matrix_T.sum(0) / (self.preference_matrix_T != 0).sum(0)
 
     '''
     计算商品的相似度矩阵
@@ -135,7 +135,7 @@ class ItemBasedOpt:
         if ab_sim_m12 != 0.0:
             pre = sim_multi_m12 / ab_sim_m12
         if pre <= 0.0:
-            pre = self.average_rate_array[m]
+            pre = self.average_rate_array[u]
         return pre
 
     # 将预测结果写入csv文件
@@ -145,7 +145,7 @@ class ItemBasedOpt:
             save_path = "data\\item_based\\item_based_predict_k_" + str(self.k_nearest) + ".csv"
             util.save_csv_from_rating(self.predict(test_path, True), save_path)
         else:
-            save_path = "predict\\out_4.csv"
+            save_path = "predict\\out_4(2).csv"
             util.save_csv_from_rating(self.predict(test_path, False), save_path)
 
     '''
@@ -158,5 +158,3 @@ class ItemBasedOpt:
             save_path = "data\\self_test\\item_based_test_predict_cos_without_k.csv"
             util.save_csv_from_rating(self.predict(test_path), save_path)
         '''
-
-# IB.predict_for_test("data\\train.csv")

@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01489779-6a91-4301-971c-7bd0f9c1dcad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data/PMF_ALS/kFactors_600_reg_0.01.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/predict/out_3(2).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LAB2文档.docx" beforeDir="false" afterPath="$PROJECT_DIR$/LAB2文档.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/PMF_ALS/PMF_ALS_predict_kFactors_10_iter_100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/PMF_ALS/PMF_ALS_predict_kFactors_200_iter_50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/PMF_ALS/out_3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part1_user_based.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1_user_based.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_item_based.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_item_based.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3_PMF_ALS.py" beforeDir="false" afterPath="$PROJECT_DIR$/part3_PMF_ALS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part4_optimize.py" beforeDir="false" afterPath="$PROJECT_DIR$/part4_optimize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict/out_3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/predict/out_3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/self_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/self_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,6 +30,20 @@
     <SUITE FILE_PATH="coverage/RecommendationSystem$kMaxTest.coverage" NAME="kMaxTest Coverage Results" MODIFIED="1574948058689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RecommendationSystem$RMSE.coverage" NAME="RMSE Coverage Results" MODIFIED="1574950689678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RecommendationSystem$ReadFile.coverage" NAME="ReadFile Coverage Results" MODIFIED="1574768106926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="RecommendationSystem" />
@@ -45,16 +72,16 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\predict" />
+      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\PMF_ALS" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\self_test" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem" />
-      <recent name="E:\智能系统原理与开发\Lab2 推荐系统\RecommendationSystem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\predict" />
-      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\PMF_ALS" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data\self_test" />
+      <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem" />
       <recent name="C:\Users\I517894\Documents\Study_FDU\智能系统原理与开发\LAB2 推荐系统\RecommendationSystem\data" />
     </key>
   </component>
@@ -222,7 +249,7 @@
       <workItem from="1575468352393" duration="74564000" />
       <workItem from="1575783774570" duration="69338000" />
       <workItem from="1575980101191" duration="15337000" />
-      <workItem from="1576040859504" duration="59779000" />
+      <workItem from="1576040859504" duration="109917000" />
     </task>
     <task id="LOCAL-00001" summary="user_based and item_based partial">
       <created>1574953830152</created>
@@ -336,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576160197711</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="final version">
+      <created>1576165469020</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1576165469020</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,5 +408,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RecommendationSystem$user_based.coverage" NAME="user_based Coverage Results" MODIFIED="1575511103003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RecommendationSystem$test.coverage" NAME="test Coverage Results" MODIFIED="1575893596888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RecommendationSystem$part3_PMF_ALS.coverage" NAME="part3_PMF_ALS Coverage Results" MODIFIED="1576400322090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -73,3 +73,18 @@ if __name__ == '__main__':
     print("item based util.get_rmse when k=500 is: " + str(item_util.get_rmse_500))
     print("item based util.get_rmse when k=all is: " + str(item_util.get_rmse_all))
     '''
+
+    '''
+                    # for m in range(self.item_m):
+                #     if ratings[u][m] != 0.0:
+                #         FTF = FTF + fixed_matrix[m].T.dot(fixed_matrix[m])
+                #         RI = RI + ratings[u][m] * fixed_matrix[m]
+                # latent_matrix[u, :] = np.power(lambdaE+FTF, -1) * (fixed_matrix[m])
+                #     # pinv(FTF + lambdaE).dot(RI.T).T
+                
+                    # for u in range(self.user_n):
+                #     if ratings[u][m] != 0.0:
+                #         FTF = FTF + fixed_matrix[u].T.dot(fixed_matrix[u])
+                #         RI = RI + ratings[u][m] * fixed_matrix[u]
+                # latent_matrix[m, :] = pinv(FTF + lambdaE).dot(RI.T).T
+    '''

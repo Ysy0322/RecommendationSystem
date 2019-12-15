@@ -1,9 +1,8 @@
+import pandas
 import pandas as pd
 import numpy
 import matplotlib.pyplot as plt
 import seaborn
-
-# from sklearn.model_selection import train_test_split
 
 '''
 读取csv文件
@@ -36,17 +35,6 @@ def read_file(path, train=True):
 '''
 preference matrix写入csv文件
 '''
-
-
-def save_csv_from_preference_matrix(matrix, path):
-    data = pd.DataFrame(matrix)
-    data = data.stack()
-    data.index = data.index.rename('userID', level=0)
-    data.index = data.index.rename('itemID', level=1)
-    data.name = 'rating'
-    data = data.reset_index()
-    numpy.savetxt(path, data, delimiter=',', header='userID,itemID,rating', comments='', newline='\n')
-
 
 '''
 userID,itemID,rating 写入csv文件
@@ -140,10 +128,11 @@ def train_test_split(path):
     assert (numpy.all((train * test) == 0))
     return train, numpy.array(test)
 
-# print(train_test_split("data\\train.csv"))
 
-# train = pd.read_csv("data\\train.csv")
-# X, y = train[['userID', 'itemID']], train['rating']
-# 【利用train_test_split方法，将X,y随机划分为训练集（X_train），训练集标签（y_train），测试集（X_test），测试集标签（y_test），按训练集：测试集=7:3的概率划分，到此步骤，可以直接对数据进行处理】
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-# print(X_train, X_test, y_train, y_test)
+def filter_res(source_path, des_path):
+    train_data = pandas.read_csv(source_path)
+    train_data.drop(['userID', 'itemID'], axis=1)
+    train_data['dataID'] = range(len(train_data))
+    order = ['dataID', 'rating']
+    train_data = train_data[order]
+    numpy.savetxt(des_path, train_data, header='dataID,rating', comments='', delimiter=',', fmt='%0i,%f')
