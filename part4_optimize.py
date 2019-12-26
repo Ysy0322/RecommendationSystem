@@ -145,7 +145,7 @@ class ItemBasedOpt:
             save_path = "data\\item_based\\item_based_predict_k_" + str(self.k_nearest) + ".csv"
             util.save_csv_from_rating(self.predict(test_path, True), save_path)
         else:
-            save_path = "predict\\out_4(2).csv"
+            save_path = "predict\\out_4.csv"
             util.save_csv_from_rating(self.predict(test_path, False), save_path)
 
     '''

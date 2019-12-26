@@ -165,7 +165,7 @@ class UserBased:
 
     def predict_to_csv(self, test_path, k=True):
         if k:
-            save_path = "predict\\out_1(2).csv"
+            save_path = "predict\\out_1.csv"
             # for self_test
             # save_path = "data\\user_based\\user_based_predict_k_" + str(self.k_nearest) + ".csv"
             util.save_csv_from_rating(self.predict_with_k(test_path), save_path)

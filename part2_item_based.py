@@ -94,7 +94,7 @@ class ItemBased:
     # 将预测结果写入csv文件
 
     def predict_to_csv(self, test_path):
-        save_path = "predict\\out_2(2).csv"
+        save_path = "predict\\out_2.csv"
         util.save_csv_from_rating(self.predict(test_path), save_path)
 
     '''

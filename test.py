@@ -58,4 +58,8 @@ if __name__ == '__main__':
     util.filter_res("predict\\out_2.csv", "predict\\out_2(2).csv")
     util.filter_res("predict\\out_3.csv", "predict\\out_3(2).csv")
     util.filter_res("predict\\out_4.csv", "predict\\out_4(2).csv")
+    User 三分钟
+    Item 五分钟
+    ALS 三十分钟 
+    Opt 五分钟
     '''
